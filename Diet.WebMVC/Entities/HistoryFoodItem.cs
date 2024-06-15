@@ -1,8 +1,11 @@
 ﻿namespace Diet.WebMVC.Entities;
 
+/// <summary>
+/// Used in histories as items to determine user's eaten food amount
+/// </summary>
 public class HistoryFoodItem : BaseEntity
 {
-    public float FoodAmount { get; set; }
+    public float EatenFoodAmount { get; set; }
 
     //Relations
     public int FoodId { get; set; }
@@ -19,7 +22,7 @@ public class HistoryFoodItem : BaseEntity
             if (Food == null) return -1;
 
 
-            return FoodAmount / Food.Amount * Food.Calorie;
+            return EatenFoodAmount / Food.PerAmount * Food.Calorie;
         }
     }
 }

@@ -1,12 +1,15 @@
 ﻿namespace Diet.WebMVC.Entities;
 
+/// <summary>
+/// Used in histories as items to determine user's exercise duration
+/// </summary>
 public class HistoryExerciseItem : BaseEntity
 {
-    public float ExerciseAmount { get; set; }
+    public float DoneExerciseAmount { get; set; }
 
     //Relations
-    public int ActivityId { get; set; }
-    public Exercise? Activity { get; set; }
+    public int ExerciseId { get; set; }
+    public Exercise? Exercise { get; set; }
 
     public int HistoryId { get; set; }
     public History? History { get; set; }
@@ -16,10 +19,10 @@ public class HistoryExerciseItem : BaseEntity
     {
         get
         {
-            if (Activity == null) return -1;
+            if (Exercise == null) return -1;
 
 
-            return ExerciseAmount / Activity.Minutes * Activity.BurnedCalorie;
+            return DoneExerciseAmount / Exercise.Minutes * Exercise.BurnedCalorie;
         }
     }
 }

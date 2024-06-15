@@ -2,5 +2,5 @@
 
 public class AppUser : IdentityUser
 {
-    public int HistoryId { get; set; }
+    public History? History { get; set; }
 }
