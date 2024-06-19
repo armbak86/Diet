@@ -1,4 +1,4 @@
-﻿namespace Diet.WebMVC.Repositories;
+﻿namespace Diet.WebMVC.Repositories.Interfaces;
 
 public interface IFoodRepository
 {
