@@ -1,4 +1,4 @@
-﻿namespace Products.Infrastructure.Persistence.EntityConfiguration;
+﻿namespace Diet.WebMVC.Infrastructure.EntityConfiguration;
 
 public class HistoryFoodItemConfiguration : IEntityTypeConfiguration<HistoryFoodItem>
 {
