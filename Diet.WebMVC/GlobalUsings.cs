@@ -8,4 +8,4 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using System.Diagnostics;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
-global using Products.Infrastructure.Persistence.EntityConfiguration;
+global using Diet.WebMVC.Infrastructure.EntityConfiguration;
