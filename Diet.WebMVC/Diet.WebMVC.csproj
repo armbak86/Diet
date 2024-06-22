@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\Migrations\" />
+    <Folder Include="Pages\" />
+    <Folder Include="wwwroot\site\" />
   </ItemGroup>
 
 </Project>
