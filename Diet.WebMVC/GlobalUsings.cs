@@ -12,3 +12,5 @@ global using System.Diagnostics;
 global using Microsoft.AspNetCore.Mvc.RazorPages;
 global using Diet.WebMVC.Repositories;
 global using Diet.WebMVC.Repositories.Interfaces;
+global using System.ComponentModel.DataAnnotations;
+global using Diet.WebMVC.ViewModels.Common;
