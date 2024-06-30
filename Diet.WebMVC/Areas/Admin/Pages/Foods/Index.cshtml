@@ -1,0 +1,52 @@
+﻿@page
+@model Diet.WebMVC.Areas.Admin.Pages.Foods.Index
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">غذا ها</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>نام</th>
+                                <th>کالری</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var food in Model.Foods)
+                            {
+                                <tr>
+                                    <td>@food.Name</td>
+                                    <td>@food.Calorie کالری در هر @food.PerAmount</td>
+                                    <td>
+                                        <a class="btn btn-sm" asp-page="./Edit" asp-route-id="@food.Id"><i class="fas fa-pen"></i></a>
+                                        <a class="btn btn-danger btn-sm btn-delete" data-page="Admin/Foods" data-id="@food.Id"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_DataTableScriptsPartial");
+    }
+}
+
+@section Styles {
+    @{
+        await Html.RenderPartialAsync("_DataTableStylesPartial");
+    }
+}

@@ -7,7 +7,7 @@
     <UserSecretsId>aspnet-Diet.WebMVC-8839f34c-1ca5-4d55-a5eb-8279a6a15283</UserSecretsId>
   </PropertyGroup>
 
-	
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5" />

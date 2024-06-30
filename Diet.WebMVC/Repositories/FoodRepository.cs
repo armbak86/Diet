@@ -1,6 +1,4 @@
-﻿using Diet.WebMVC.Repositories.Interfaces;
-
-namespace Diet.WebMVC.Repositories;
+﻿namespace Diet.WebMVC.Repositories;
 
 public class FoodRepository : IFoodRepository
 {
@@ -29,10 +27,21 @@ public class FoodRepository : IFoodRepository
 
     public async Task<Food> GetFoodAsync(int id) => await _context.Foods.FindAsync(id);
 
-    public async Task UpdateFoodAsync(Food food)
+    public async Task<bool> UpdateFoodAsync(Food food)
     {
-        _context.Foods.Update(food);
-        await _context.SaveChangesAsync();
+        try
+        {
+            _context.Foods.Update(food);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!await FoodExists(food.Id))
+                return false;
+            else
+                throw;
+        }
     }
 
     public async Task DeleteFoodAsync(int id)
@@ -40,4 +49,6 @@ public class FoodRepository : IFoodRepository
         _context.Remove(await GetFoodAsync(id));
         await _context.SaveChangesAsync();
     }
+
+    public async Task<bool> FoodExists(int id) => await _context.Foods.AnyAsync(e => e.Id == id);
 }

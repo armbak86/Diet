@@ -10,3 +10,5 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using System.Diagnostics;
 global using Microsoft.AspNetCore.Mvc.RazorPages;
+global using Diet.WebMVC.Repositories;
+global using Diet.WebMVC.Repositories.Interfaces;
