@@ -1,10 +1,35 @@
-
-jQuery(document).ready(function($) {
+﻿jQuery(document).ready(function ($) {
     'use strict';
 
-    // ============================================================== 
+    // Delete Button Action On Datatabeles
+    let btns = $(".btn-delete");
+    if (btns) {
+        btns.each(function (index, btn) {
+            btn = $(btn)
+            let id = btn.data("id");
+            let page = btn.data("page");
+
+            btn.on("click", async function () {
+                const result = await Swal.fire({
+                    title: "آیا از حذف مطمئن هستید؟",
+                    text: "قسمت پاک شده امکان بازگردانی ندارد!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonColor: "#d33",
+                    confirmButtonText: "بلی",
+                    cancelButtonText: "خیر",
+                });
+
+                if (result.isConfirmed) {
+                    window.location.href = `/${page}/Delete?id=${id}`;
+                }
+            })
+        })
+    }
+
+
     // Notification list
-    // ============================================================== 
     if ($(".notification-list").length) {
 
         $('.notification-list').slimScroll({
@@ -13,10 +38,8 @@ jQuery(document).ready(function($) {
 
     }
 
-    // ============================================================== 
-    // Menu Slim Scroll List
-    // ============================================================== 
 
+    // Menu Slim Scroll List
 
     if ($(".menu-list").length) {
         $('.menu-list').slimScroll({
@@ -24,15 +47,15 @@ jQuery(document).ready(function($) {
         });
     }
 
-    // ============================================================== 
+
     // Sidebar scrollnavigation 
-    // ============================================================== 
 
     if ($(".sidebar-nav-fixed a").length) {
         $('.sidebar-nav-fixed a')
+
             // Remove links that don't actually link to anything
 
-            .click(function(event) {
+            .click(function (event) {
                 // On-page links
                 if (
                     location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
@@ -47,7 +70,7 @@ jQuery(document).ready(function($) {
                         event.preventDefault();
                         $('html, body').animate({
                             scrollTop: target.offset().top - 90
-                        }, 1000, function() {
+                        }, 1000, function () {
                             // Callback after animation
                             // Must change focus!
                             var $target = $(target);
@@ -61,7 +84,7 @@ jQuery(document).ready(function($) {
                         });
                     }
                 };
-                $('.sidebar-nav-fixed a').each(function() {
+                $('.sidebar-nav-fixed a').each(function () {
                     $(this).removeClass('active');
                 })
                 $(this).addClass('active');
@@ -69,64 +92,31 @@ jQuery(document).ready(function($) {
 
     }
 
-    // ============================================================== 
+
     // tooltip
-    // ============================================================== 
+
     if ($('[data-toggle="tooltip"]').length) {
-            
-            $('[data-toggle="tooltip"]').tooltip()
 
-        }
-
-     // ============================================================== 
-    // popover
-    // ============================================================== 
-       if ($('[data-toggle="popover"]').length) {
-            $('[data-toggle="popover"]').popover()
+        $('[data-toggle="tooltip"]').tooltip()
 
     }
-     // ============================================================== 
-    // Chat List Slim Scroll
-    // ============================================================== 
-        
 
-        if ($('.chat-list').length) {
-            $('.chat-list').slimScroll({
+
+    // popover
+
+    if ($('[data-toggle="popover"]').length) {
+        $('[data-toggle="popover"]').popover()
+
+    }
+
+    // Chat List Slim Scroll
+
+    if ($('.chat-list').length) {
+        $('.chat-list').slimScroll({
             color: 'false',
             width: '100%'
 
 
         });
     }
-    // ============================================================== 
-    // dropzone script
-    // ============================================================== 
-
- //     if ($('.dz-clickable').length) {
- //            $(".dz-clickable").dropzone({ url: "/file/post" });
- // }
-
-}); // AND OF JQUERY
-
-
-// $(function() {
-//     "use strict";
-
-
-    
-
-   // var monkeyList = new List('test-list', {
-    //    valueNames: ['name']
-
-     // });
-  // var monkeyList = new List('test-list-2', {
-    //    valueNames: ['name']
-
-   // });
-
-
-
-   
-   
-
-// });
+});

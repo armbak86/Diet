@@ -23,7 +23,7 @@ body {
     font-weight: normal;
     font-size: 14px;
     color: #71748d;
-    background-color: #efeff6;
+    /*background-color: #e3f7ec;*/
     -webkit-font-smoothing: antialiased;
 }
 
@@ -1485,17 +1485,6 @@ Top Header
     background-color: transparent;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /* -----------------------
 Left Navigation Sidebar
 ------------------------- */
@@ -1805,7 +1794,7 @@ Container / Wrapper
 
 .dashboard-wrapper {
     position: relative;
-    left: 0;
+    /*left: 0;*/
     margin-right: 264px;
     min-height: 870px !important;
 }
@@ -6684,7 +6673,7 @@ Media Query
         right: 0px;
     }
     .dashboard-wrapper {
-        margin-left: 0px;
+        margin-right: 0px;
     }
     .dashboard-footer {
         margin-left: 0px;
@@ -6760,7 +6749,7 @@ Media Query
     }
 
     .dashboard-wrapper {
-        margin-left: 0px;
+        margin-right: 0px;
     }
     .dashboard-footer {
         margin-left: 0px;

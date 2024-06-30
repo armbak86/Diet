@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-rtl.css">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.rtl.css">
     <link rel="stylesheet" href="~/admin/css/style.css">
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+
+    @await RenderSectionAsync("Styles", required: false)
 
     <title>اسم - داشبورد ادمین</title>
 </head>
@@ -24,21 +26,6 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
-                        <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/images/admin.svg" alt="" class="user-avatar-md rounded-circle">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
-                                 aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">کیانا بکطاش</h5>
-                                </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i> حساب کاربری</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i> تنظیمات</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i> خروج</a>
-                            </div>
-                        </li>
                         <li class="nav-item dropdown notification">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
@@ -69,6 +56,22 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown nav-user">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="assets/images/admin.svg" alt="" class="user-avatar-md rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                                 aria-labelledby="navbarDropdownMenuLink2">
+                                <div class="nav-user-info">
+                                    <h5 class="mb-0 text-white nav-user-name">کیانا بکطاش</h5>
+                                </div>
+                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i> حساب کاربری</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i> تنظیمات</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i> خروج</a>
+                            </div>
+                        </li>
+
                     </ul>
                 </div>
             </nav>
@@ -85,19 +88,25 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-page="/foods/index"><i class="fas fa-hamburger"></i> مدیریت غذا</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/exercises/index"><i class="fas fa-dumbbell"></i> مدیریت فعالیت ها</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
             </div>
         </div>
         <div class="dashboard-wrapper">
-           @RenderBody()
+            <div class="container-fluid dashboard-content ">
+                @RenderBody()
+            </div>
         </div>
     </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="~/lib/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/lib/multi-select/js/jquery.multi-select.js"></script>
     <script src="~/admin/js/main-js.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
