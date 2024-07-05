@@ -1,11 +1,11 @@
 ﻿namespace Diet.WebMVC.Areas.Admin.Pages.Foods;
 
-public class EditModel : PageModel
+public class EditFoodModel : PageModel
 {
     private readonly IFoodRepository _repository;
     private readonly IMapper _mapper;
 
-    public EditModel(IFoodRepository repository, IMapper mapper)
+    public EditFoodModel(IFoodRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;

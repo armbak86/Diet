@@ -1,10 +1,10 @@
 ﻿namespace Diet.WebMVC.Areas.Admin.Pages.Foods;
 
-public class DeleteModel : PageModel
+public class DeleteFoodModel : PageModel
 {
     private readonly IFoodRepository _repository;
 
-    public DeleteModel(IFoodRepository repository)
+    public DeleteFoodModel(IFoodRepository repository)
     {
         _repository = repository;
     }

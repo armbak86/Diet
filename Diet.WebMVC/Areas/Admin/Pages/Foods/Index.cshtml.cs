@@ -1,10 +1,10 @@
 ﻿namespace Diet.WebMVC.Areas.Admin.Pages.Foods;
 
-public class Index : PageModel
+public class FoodIndex : PageModel
 {
     private readonly IFoodRepository _repository;
 
-    public Index(IFoodRepository repostiory)
+    public FoodIndex(IFoodRepository repostiory)
     {
         _repository = repostiory;
     }
