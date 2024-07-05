@@ -1,4 +1,4 @@
-namespace Diet.WebMVC.Models;
+namespace Diet.WebMVC.ViewModels;
 
 public class ErrorViewModel
 {
