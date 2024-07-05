@@ -1,0 +1,38 @@
+﻿@page
+@model CreateExerciseModel
+
+<h4>Exercise</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Exercise.Name" class="control-label"></label>
+                <input asp-for="Exercise.Name" class="form-control" />
+                <span asp-validation-for="Exercise.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Exercise.Minutes" class="control-label"></label>
+                <input asp-for="Exercise.Minutes" class="form-control" />
+                <span asp-validation-for="Exercise.Minutes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Exercise.BurnedCalorie" class="control-label"></label>
+                <input asp-for="Exercise.BurnedCalorie" class="form-control" />
+                <span asp-validation-for="Exercise.BurnedCalorie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

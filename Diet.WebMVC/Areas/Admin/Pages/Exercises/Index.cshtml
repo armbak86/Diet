@@ -1,0 +1,52 @@
+﻿@page
+@model Diet.WebMVC.Areas.Admin.Pages.Exercises.ExerciseIndex
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">غذا ها</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>نام</th>
+                                <th>کالری سوخته شده در دقیقه</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var exercise in Model.Exercises)
+                            {
+                                <tr>
+                                    <td>@exercise.Name</td>
+                                    <td>@exercise.BurnedCalorie کالری در هر @exercise.Minutes</td>
+                                    <td>
+                                        <a class="btn btn-sm" asp-page="./Edit" asp-route-id="@exercise.Id"><i class="fas fa-pen"></i></a>
+                                        <a class="btn btn-danger btn-sm btn-delete" data-page="Admin/Exercises" data-id="@exercise.Id"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_DataTableScriptsPartial");
+    }
+}
+
+@section Styles {
+    @{
+        await Html.RenderPartialAsync("_DataTableStylesPartial");
+    }
+}

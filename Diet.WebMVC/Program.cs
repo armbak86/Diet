@@ -14,9 +14,11 @@ builder.Services.AddControllersWithViews();
 
 // Repositories
 builder.Services.AddScoped<IFoodRepository, FoodRepository>();
+builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
+
 
 // AutoMapper
-builder.Services.AddAutoMapper(typeof(FoodProfile));
+builder.Services.AddAutoMapper(typeof(FoodProfile),typeof(ExerciseProfile));
 
 var app = builder.Build();
 

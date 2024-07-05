@@ -26,4 +26,11 @@
     <Folder Include="wwwroot\site\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Areas\Admin\Pages\Exercises\Create.cshtml" />
+    <None Include="Areas\Admin\Pages\Exercises\Delete.cshtml" />
+    <None Include="Areas\Admin\Pages\Exercises\Edit.cshtml" />
+    <None Include="Areas\Admin\Pages\Exercises\Index.cshtml" />
+  </ItemGroup>
+
 </Project>
