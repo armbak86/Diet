@@ -14,3 +14,6 @@ global using Diet.WebMVC.Repositories;
 global using Diet.WebMVC.Repositories.Interfaces;
 global using System.ComponentModel.DataAnnotations;
 global using Diet.WebMVC.ViewModels.Common;
+global using AutoMapper;
+global using Diet.WebMVC.ViewModels;
+global using Diet.WebMVC.Profiles;
