@@ -3,14 +3,16 @@
 public class EditModel : PageModel
 {
     private readonly IFoodRepository _repository;
+    private readonly IMapper _mapper;
 
-    public EditModel(IFoodRepository repository)
+    public EditModel(IFoodRepository repository, IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
     [BindProperty]
-    public Food Food { get; set; } = default!;
+    public FoodViewModel Food { get; set; } = default!;
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
@@ -22,7 +24,7 @@ public class EditModel : PageModel
         if (food == null)
             return NotFound();
 
-        Food = food;
+        Food = _mapper.Map<FoodViewModel>(food);
         return Page();
     }
 
@@ -32,7 +34,7 @@ public class EditModel : PageModel
         if (!ModelState.IsValid)
             return Page();
 
-        await _repository.UpdateFoodAsync(Food);
+        await _repository.UpdateFoodAsync(_mapper.Map<Food>(Food));
 
         return RedirectToPage("./Index");
     }

@@ -3,10 +3,12 @@
 public class CreateModel : PageModel
 {
     private readonly IFoodRepository _repository;
+    private readonly IMapper _mapper;
 
-    public CreateModel(IFoodRepository repository)
+    public CreateModel(IFoodRepository repository, IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
     public IActionResult OnGet()
@@ -15,7 +17,7 @@ public class CreateModel : PageModel
     }
 
     [BindProperty]
-    public Food Food { get; set; } = default!;
+    public FoodViewModel Food { get; set; } = default!;
 
     public async Task<IActionResult> OnPostAsync()
     {
@@ -23,7 +25,7 @@ public class CreateModel : PageModel
             return Page();
         
 
-        await _repository.CreateFoodAsync(Food);
+        await _repository.CreateFoodAsync(_mapper.Map<Food>(Food));
 
         return RedirectToPage("./Index");
     }
