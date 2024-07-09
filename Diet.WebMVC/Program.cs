@@ -1,3 +1,5 @@
+using Categories.API.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // TODO:Move Serilog config to appsettings
@@ -36,6 +38,9 @@ builder.Services.AddAutoMapper(typeof(FoodProfile),typeof(ExerciseProfile),typeo
 
 
 var app = builder.Build();
+
+// Migration
+app.MigrateToDatabase<AppDbContext>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
