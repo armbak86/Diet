@@ -1,8 +1,8 @@
-﻿namespace Categories.API.Extensions;
+﻿namespace Diet.WebMVC.Extensions;
 
 public static class HostExtensions
 {
-    public static WebApplication MigrateToDatabase<TDbContext>(this WebApplication host, Action<TDbContext>? seed = null,int count = 0)
+    public static WebApplication MigrateToDatabase<TDbContext>(this WebApplication host, Action<TDbContext>? seed = null, int count = 0)
         where TDbContext : DbContext
     {
         using (var scope = host.Services.CreateScope())
@@ -26,7 +26,7 @@ public static class HostExtensions
                 //TODO:Use Polly
                 logger.LogInformation($"Something went wrong!\n  {ex.Message}");
                 count++;
-                if (count < 50) MigrateToDatabase<TDbContext>(host, seed, count);
+                if (count < 50) MigrateToDatabase(host, seed, count);
             }
 
             return host;

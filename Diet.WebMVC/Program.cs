@@ -1,5 +1,3 @@
-using Diet.WebMVC.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // TODO:Move Serilog config to appsettings

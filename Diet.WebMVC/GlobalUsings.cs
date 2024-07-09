@@ -19,3 +19,4 @@ global using Diet.WebMVC.Profiles;
 global using Serilog.Events;
 global using Serilog.Sinks.SystemConsole.Themes;
 global using Serilog;
+global using Diet.WebMVC.Extensions;
