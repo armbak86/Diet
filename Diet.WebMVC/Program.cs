@@ -1,4 +1,4 @@
-using Categories.API.Extensions;
+using Diet.WebMVC.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
