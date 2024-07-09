@@ -4,9 +4,9 @@ public class ExerciseIndex : PageModel
 {
     private readonly IExerciseRepository _repository;
 
-    public ExerciseIndex(IExerciseRepository repostiory)
+    public ExerciseIndex(IExerciseRepository repository)
     {
-        _repository = repostiory;
+        _repository = repository;
     }
 
     public IEnumerable<Exercise> Exercises { get; set; } = default!;

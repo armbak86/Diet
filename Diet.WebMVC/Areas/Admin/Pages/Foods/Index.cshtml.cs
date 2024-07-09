@@ -4,9 +4,9 @@ public class FoodIndex : PageModel
 {
     private readonly IFoodRepository _repository;
 
-    public FoodIndex(IFoodRepository repostiory)
+    public FoodIndex(IFoodRepository repository)
     {
-        _repository = repostiory;
+        _repository = repository;
     }
 
     public IEnumerable<Food> Foods { get; set; } = default!;
