@@ -24,7 +24,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>();
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddRazorPages();
 
 // Repositories
 builder.Services.AddScoped<IFoodRepository, FoodRepository>();
@@ -56,10 +57,6 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.UseSerilogRequestLogging();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
