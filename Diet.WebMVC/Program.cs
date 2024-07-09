@@ -1,6 +1,18 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// TODO:Move Serilog config to appsettings
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+    .Enrich.FromLogContext()
+    .WriteTo.Console(theme: AnsiConsoleTheme.Code)
+    .CreateLogger();
+
 // Add services to the container.
+
+// Serilog
+builder.Host.UseSerilog();
 
 // DataBase
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -17,9 +29,11 @@ builder.Services.AddScoped<IFoodRepository, FoodRepository>();
 builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
 builder.Services.AddScoped<IRegimenRepository, RegimenRepository>();
 
-
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(FoodProfile),typeof(ExerciseProfile),typeof(RegimenProfile));
+
+// End services
+
 
 var app = builder.Build();
 
@@ -35,6 +49,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSerilogRequestLogging();
 
 app.MapControllerRoute(
     name: "default",

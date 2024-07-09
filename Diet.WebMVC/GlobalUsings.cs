@@ -16,3 +16,6 @@ global using Diet.WebMVC.ViewModels.Common;
 global using AutoMapper;
 global using Diet.WebMVC.ViewModels;
 global using Diet.WebMVC.Profiles;
+global using Serilog.Events;
+global using Serilog.Sinks.SystemConsole.Themes;
+global using Serilog;
