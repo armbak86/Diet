@@ -1,4 +1,4 @@
-/* 
+﻿/* 
 ---------------------------------------------
 font & reset css
 --------------------------------------------- 
@@ -157,12 +157,12 @@ global styles
 --------------------------------------------- 
 */
 html {
-  --primary-color: #CDE9DA;
-  --secondary-color: #B0D0E7;
-  --white-color: #fff;
-  --darker-primary-color: #f4813f;
-
-  direction: rtl;
+    --primary-color: #a5d6bc;
+    --secondary-color: #B0D0E7;
+    --white-color: #fff;
+    --darker-primary-color: #f4813f;
+    --gradient: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    direction: rtl;
 }
 
 html,
@@ -1057,11 +1057,11 @@ footer
 }
 
 footer {
-  margin-top: 200px;
-  /* padding-top: 150px;  */
-  background: rgb(244, 129, 63);
-  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  width: 100%;
+    /*margin-top: 200px;*/
+    /* padding-top: 150px;  */
+    background: rgb(244, 129, 63);
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    width: 100%;
 }
 
 footer .footer-content {

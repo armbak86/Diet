@@ -1,0 +1,28 @@
+﻿@page
+@model Diet.WebMVC.Pages.Regimens.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/site/css/regimens.css" />
+}
+
+<div class="container mb-5">
+    <div class="row diet-details">
+        <div class="col-md-8">
+            <div class="diet-description">
+                <h2>@Model.Regimen.Name</h2>
+                @Html.Raw(Model.Regimen.Description)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="diet-payment">
+                <h3>گزینه‌های پرداخت</h3>
+                <div class="price">۱۰۰٬۰۰۰ تومان</div>
+                <a class="btn btn-success" asp-page-handler="Checkout">پرداخت با کارت بانکی</a>
+            </div>
+        </div>
+    </div>
+</div>

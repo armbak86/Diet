@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="submenu">
+        <a href="javascript:;">پروفایل</a>
+        <ul>
+            <li><a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">سلام @UserManager.GetUserName(User)!</a></li>
+            <li>
+                <a asp-area="History" asp-page="/Index">سابقه</a>
+            </li>
+            <li>
+                <a asp-area="Identity" asp-page="/Account/Logout">خروج</a>
+            </li>
+        </ul>
+    </li>
+}
+else
+{
+    <li class="scroll-to-section">
+        <a class="menu-item" asp-area="Identity" asp-page="/Account/Login">ورود</a>
+    </li>
+    <li class="scroll-to-section">
+        <a class="menu-item" asp-area="Identity" asp-page="/Account/Register">ثبت نام</a>
+    </li>
+}

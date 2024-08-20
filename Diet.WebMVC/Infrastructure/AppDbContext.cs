@@ -1,6 +1,6 @@
 ﻿namespace Diet.WebMVC.Infrastructure;
 
-public class AppDbContext : IdentityDbContext<IdentityUser>
+public class AppDbContext : IdentityDbContext<AppUser>
 {
     public DbSet<Food> Foods { get; set; }
     public DbSet<Exercise> Exercises { get; set; }

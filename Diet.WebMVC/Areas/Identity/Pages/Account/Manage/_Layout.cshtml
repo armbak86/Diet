@@ -1,26 +1,17 @@
 ﻿@{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
-    {
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
         Layout = parentLayout.ToString();
-    }
-    else
-    {
-        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
-    }
 }
 
-<h1>Manage your account</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/site/css/user-profile.css" />
+}
 
-<div>
-    <h2>Change your account settings</h2>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
-        </div>
+<div class="d-flex">
+    <partial name="_ManageNav" />
+
+    <div class="main-content flex-grow-1 p-4">
+        @RenderBody()
     </div>
 </div>
 

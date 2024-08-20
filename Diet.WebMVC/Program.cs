@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Diet.WebMVC.Infrastructure;
+using Diet.WebMVC.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // TODO:Move Serilog config to appsettings
@@ -20,7 +24,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddRazorPages();
@@ -29,9 +33,16 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IFoodRepository, FoodRepository>();
 builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
 builder.Services.AddScoped<IRegimenRepository, RegimenRepository>();
+builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
+
+//Services 
+builder.Services.AddHttpClient<ICheckoutService, ZarinPalTestCheckoutService>();
+
+builder.Services.AddScoped(typeof(IPaginationService<>), typeof(PaginationService<>));
+builder.Services.AddScoped<ICheckoutService, ZarinPalTestCheckoutService>();
 
 // AutoMapper
-builder.Services.AddAutoMapper(typeof(FoodProfile),typeof(ExerciseProfile),typeof(RegimenProfile));
+builder.Services.AddAutoMapper(typeof(FoodProfile), typeof(ExerciseProfile), typeof(RegimenProfile));
 
 // End services
 
