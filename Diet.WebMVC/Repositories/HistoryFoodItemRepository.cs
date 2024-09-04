@@ -25,7 +25,7 @@ public class HistoryFoodItemRepository : IHistoryFoodItemRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<HistoryFoodItem>> GetHistoryFoodItemsAsync(int historyId) => await _context.HistoryFoodItems.ToListAsync();
+    public async Task<IEnumerable<HistoryFoodItem>> GetHistoryFoodItemsAsync(int historyId) => await _context.HistoryFoodItems.Include(hfi =>hfi.Food).ToListAsync();
 
     public async Task<HistoryFoodItem> GetHistoryFoodItemAsync(int id) => await _context.HistoryFoodItems.FindAsync(id);
 

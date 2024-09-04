@@ -1,6 +1,4 @@
-﻿using Diet.WebMVC.Repositories.Interfaces;
-
-namespace Diet.WebMVC.Repositories;
+﻿namespace Diet.WebMVC.Repositories;
 
 public class HistoryRepository : IHistoryRepository
 {
@@ -35,7 +33,9 @@ public class HistoryRepository : IHistoryRepository
 
     public async Task<History> GetHistoryAsync(int id) => await _context.Histories.FindAsync(id);
 
-    public Task<History> GetHistoryByUserIdAsync(string userId) => _context.Histories.FirstOrDefaultAsync(x => x.AppUserId == userId);
+    public async Task<int> GetHistoryIdAsync(string userId) => (await _context.Histories.Where(h => h.AppUserId == userId).FirstAsync()).Id;
+
+    public Task<History> GetHistoryIncludedByUserIdAsync(string userId) => _context.Histories.Include(h => h.ExerciseHistoryItems).FirstOrDefaultAsync(x => x.AppUserId == userId);
 
     public async Task UpdateHistoryAsync(History history)
     {

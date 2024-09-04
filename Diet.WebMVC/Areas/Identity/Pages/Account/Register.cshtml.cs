@@ -44,7 +44,7 @@ public class RegisterModel : PageModel
                 await _historyRepository.CreateHistoryAsync(new History() { AppUserId = user.Id });
 
                 await _userManager.UpdateAsync(user);
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                await _signInManager.SignInAsync(user,isPersistent: false);
                 return LocalRedirect(returnUrl);
             }
 

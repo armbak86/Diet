@@ -1,0 +1,51 @@
+﻿@page
+@model Diet.WebMVC.Areas.Admin.Pages.Users.AppUserIndex
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">غذا ها</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>نام رژیم</th>
+                                <th>توضیحات</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model.AppUsers)
+                            {
+                                <tr>
+                                    <td>@user.UserName</td>
+                                    <td>
+                                        <a class="btn btn-sm" asp-page="./Edit" asp-route-id="@user.Id"><i class="fas fa-pen"></i></a>
+                                        <a class="btn btn-danger btn-sm btn-delete" data-page="Admin/Users" data-id="@user.Id"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_DataTableScriptsPartial");
+    }
+}
+
+@section Styles {
+    @{
+        await Html.RenderPartialAsync("_DataTableStylesPartial");
+    }
+}

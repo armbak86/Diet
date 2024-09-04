@@ -1,0 +1,58 @@
+﻿@page
+@model Diet.WebMVC.Pages.UserHistory.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/site/css/user-history.css" />
+}
+
+<div class="container content">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-container">   
+                <h2 class="mb-4">غذاهای مصرف شده</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>نام غذا</th>
+                            <th>مقدار</th>
+                            <th>کالری</th>
+                            <th>زمان مصرف</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.FoodItemes)
+                        {
+                            <tr>
+                                <td>@item.Food.Name</td>
+                                <td>@item.EatenFoodAmount</td>
+                                <td>@item.FinalCalorie</td>
+                                <td>@item.CreatedDate</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-edit">ویرایش</button>
+                                        <button class="btn btn-delete">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="text-end mt-3">
+                    <button class="btn btn-add">افزودن غذای جدید</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="total-calories">
+                <div class="calories-label">جمع کالری مصرفی:</div>
+                <div class="calories-value">۹۷۰ کالری</div>
+            </div>
+        </div>
+    </div>
+</div>
