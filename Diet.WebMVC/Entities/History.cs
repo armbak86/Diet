@@ -8,7 +8,7 @@ public class History : BaseEntity
     //Relations
     public IEnumerable<HistoryFoodItem>? FoodHistoryItems { get; set; }
     public IEnumerable<HistoryExerciseItem>? ExerciseHistoryItems { get; set; }
-    public IEnumerable<Regimen>? Regimens{ get; set; }
+
     public AppUser? AppUser { get; set; }
     public string? AppUserId { get; set; }
 }

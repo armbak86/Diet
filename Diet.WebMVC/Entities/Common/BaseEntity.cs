@@ -1,7 +1,7 @@
 ﻿namespace Diet.WebMVC.Entities.Common;
 
 /// <summary>
-/// Extracting all comment properties in this class 
+/// Extracting all common properties in this class 
 /// </summary>
 public abstract class BaseEntity
 {
