@@ -3,16 +3,13 @@
 [Authorize]
 public class IndexModel : PageModel
 {
-    //private readonly IHistoryExerciseItemRepository _exerciseRepository;
-    private readonly IHistoryFoodItemRepository _foodRepository;
+
     private readonly IHistoryRepository _historyRepository;
     private readonly IPaginationService<Regimen> _paginationService;
     private readonly UserManager<AppUser> _userManager;
 
-    public IndexModel(IHistoryFoodItemRepository foodRepository, IHistoryRepository historyRepository, IPaginationService<Regimen> paginationService, UserManager<AppUser> userManager)
+    public IndexModel(IHistoryRepository historyRepository, IPaginationService<Regimen> paginationService, UserManager<AppUser> userManager)
     {
-        //_exerciseRepository = exerciseRepository;
-        _foodRepository = foodRepository;
         _historyRepository = historyRepository;
         _paginationService = paginationService;
         _userManager = userManager;
@@ -23,6 +20,7 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        FoodItemes = await _foodRepository.GetHistoryFoodItemsAsync(await _historyRepository.GetHistoryIdAsync(_userManager.GetUserId(User)));
+        //FoodItemes = await _foodRepository.GetHistoryFoodItemsAsync(await _historyRepository.GetHistoryIdAsync(_userManager.GetUserId(User)));
+        FoodItemes = (await _historyRepository.GetLoadedHistoryAsync(_userManager.GetUserId(User))).FoodHistoryItems;
     }
 }

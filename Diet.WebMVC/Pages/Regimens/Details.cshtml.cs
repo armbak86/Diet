@@ -2,10 +2,10 @@
 
 public class DetailsModel : PageModel
 {
-    private readonly IRegimenRepository _repository;
+    private readonly IGenericRepository<Regimen> _repository;
     private readonly ICheckoutService _checkoutService;
 
-    public DetailsModel(IRegimenRepository repository, ICheckoutService checkoutService)
+    public DetailsModel(IGenericRepository<Regimen> repository, ICheckoutService checkoutService)
     {
         _repository = repository;
         _checkoutService = checkoutService;
@@ -19,7 +19,7 @@ public class DetailsModel : PageModel
         if (id == null)
             return NotFound();
 
-        Regimen = await _repository.GetRegimenAsync((int)id);
+        Regimen = await _repository.GetByIdAsync((int)id);
 
         if (Regimen == null)
             return NotFound();

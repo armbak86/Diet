@@ -2,10 +2,10 @@
 
 public class EditExerciseModel : PageModel
 {
-    private readonly IExerciseRepository _repository;
+    private readonly IGenericRepository<Exercise> _repository;
     private readonly IMapper _mapper;
 
-    public EditExerciseModel(IExerciseRepository repository, IMapper mapper)
+    public EditExerciseModel(IGenericRepository<Exercise> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -20,7 +20,7 @@ public class EditExerciseModel : PageModel
             return NotFound();
 
 
-        var exercise = await _repository.GetExerciseAsync((int)id);
+        var exercise = await _repository.GetByIdAsync((int)id);
         if (exercise == null)
             return NotFound();
 
@@ -34,7 +34,7 @@ public class EditExerciseModel : PageModel
         if (!ModelState.IsValid)
             return Page();
 
-        await _repository.UpdateExerciseAsync(_mapper.Map<Exercise>(Exercise));
+        await _repository.UpdateAsync(_mapper.Map<Exercise>(Exercise));
 
         return RedirectToPage("./Index");
     }

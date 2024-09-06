@@ -2,15 +2,16 @@
 
 public class CreateFoodModel : PageModel
 {
-    private readonly IFoodRepository _repository;
+    private readonly IGenericRepository<Food> _repository;
     private readonly IMapper _mapper;
 
-    public CreateFoodModel(IFoodRepository repository, IMapper mapper)
+    public CreateFoodModel(IGenericRepository<Food> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
     }
 
+    // BUG: OnGet not being invoked
     public IActionResult OnGet()
     {
         return Page();
@@ -25,7 +26,7 @@ public class CreateFoodModel : PageModel
             return Page();
         
 
-        await _repository.CreateFoodAsync(_mapper.Map<Food>(Food));
+        await _repository.AddAsync(_mapper.Map<Food>(Food));
 
         return RedirectToPage("./Index");
     }

@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Diet.WebMVC.Infrastructure;
-using Diet.WebMVC.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // TODO:Move Serilog config to appsettings
@@ -34,15 +30,11 @@ builder.Services.AddDefaultIdentity<AppUser>(options =>
 builder.Services.AddRazorPages();
 
 // Repositories
-builder.Services.AddScoped<IFoodRepository, FoodRepository>();
-builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
-builder.Services.AddScoped<IRegimenRepository, RegimenRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
-builder.Services.AddScoped<IHistoryFoodItemRepository, HistoryFoodItemRepository>();
 
 //Services 
 builder.Services.AddHttpClient<ICheckoutService, ZarinPalTestCheckoutService>();
-
 builder.Services.AddScoped(typeof(IPaginationService<>), typeof(PaginationService<>));
 builder.Services.AddScoped<ICheckoutService, ZarinPalTestCheckoutService>();
 

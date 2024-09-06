@@ -2,10 +2,10 @@
 
 public class EditFoodModel : PageModel
 {
-    private readonly IFoodRepository _repository;
+    private readonly IGenericRepository<Food> _repository;
     private readonly IMapper _mapper;
 
-    public EditFoodModel(IFoodRepository repository, IMapper mapper)
+    public EditFoodModel(IGenericRepository<Food> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -20,7 +20,7 @@ public class EditFoodModel : PageModel
             return NotFound();
 
 
-        var food = await _repository.GetFoodAsync((int)id);
+        var food = await _repository.GetByIdAsync((int)id);
         if (food == null)
             return NotFound();
 
@@ -34,7 +34,7 @@ public class EditFoodModel : PageModel
         if (!ModelState.IsValid)
             return Page();
 
-        await _repository.UpdateFoodAsync(_mapper.Map<Food>(Food));
+        await _repository.UpdateAsync(_mapper.Map<Food>(Food));
 
         return RedirectToPage("./Index");
     }

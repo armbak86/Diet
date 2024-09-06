@@ -2,9 +2,9 @@
 
 public class FoodIndex : PageModel
 {
-    private readonly IFoodRepository _repository;
+    private readonly IGenericRepository<Food> _repository;
 
-    public FoodIndex(IFoodRepository repository)
+    public FoodIndex(IGenericRepository<Food> repository)
     {
         _repository = repository;
     }
@@ -13,6 +13,6 @@ public class FoodIndex : PageModel
 
     public async Task OnGetAsync()
     {
-        Foods = await _repository.GetFoodsAsync();
+        Foods = await _repository.GetAllAsync();
     }
 }

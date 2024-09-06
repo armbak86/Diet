@@ -2,9 +2,9 @@
 
 public class ExerciseIndex : PageModel
 {
-    private readonly IExerciseRepository _repository;
+    private readonly IGenericRepository<Exercise> _repository;
 
-    public ExerciseIndex(IExerciseRepository repository)
+    public ExerciseIndex(IGenericRepository<Exercise> repository)
     {
         _repository = repository;
     }
@@ -13,6 +13,6 @@ public class ExerciseIndex : PageModel
 
     public async Task OnGetAsync()
     {
-        Exercises = await _repository.GetExercisesAsync();
+        Exercises = await _repository.GetAllAsync();
     }
 }

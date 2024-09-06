@@ -2,9 +2,9 @@
 
 public class DeleteRegimenModel : PageModel
 {
-    private readonly IRegimenRepository _repository;
+    private readonly IGenericRepository<Regimen> _repository;
 
-    public DeleteRegimenModel(IRegimenRepository repository)
+    public DeleteRegimenModel(IGenericRepository<Regimen> repository)
     {
         _repository = repository;
     }
@@ -14,10 +14,10 @@ public class DeleteRegimenModel : PageModel
         if (id == null)
             return NotFound();
 
-        var regimen = await _repository.GetRegimenAsync((int)id);
+        var regimen = await _repository.GetByIdAsync((int)id);
 
         if (regimen != null)
-            await _repository.DeleteRegimenAsync(regimen);
+            await _repository.RemoveAsync(regimen);
         else
             return NotFound();
 

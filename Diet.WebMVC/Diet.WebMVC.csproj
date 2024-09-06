@@ -8,13 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\History\**" />
-    <Content Remove="Areas\History\**" />
-    <EmbeddedResource Remove="Areas\History\**" />
-    <None Remove="Areas\History\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.5" />
@@ -33,21 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\Migrations\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Areas\Admin\Pages\Exercises\Create.cshtml" />
-    <None Include="Areas\Admin\Pages\Exercises\Delete.cshtml" />
-    <None Include="Areas\Admin\Pages\Exercises\Edit.cshtml" />
-    <None Include="Areas\Admin\Pages\Exercises\Index.cshtml" />
-    <None Include="Areas\Admin\Pages\Regimens\Create.cshtml" />
-    <None Include="Areas\Admin\Pages\Regimens\Delete.cshtml" />
-    <None Include="Areas\Admin\Pages\Regimens\Edit.cshtml" />
-    <None Include="Areas\Admin\Pages\Regimens\Index.cshtml" />
-    <None Include="Areas\Admin\Pages\Users\Create.cshtml" />
-    <None Include="Areas\Admin\Pages\Users\Delete.cshtml" />
-    <None Include="Areas\Admin\Pages\Users\Edit.cshtml" />
-    <None Include="Areas\Admin\Pages\Users\Index.cshtml" />
   </ItemGroup>
 
 </Project>

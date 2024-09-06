@@ -27,3 +27,4 @@ global using System.Net.Http;
 global using System.Text;
 global using Newtonsoft.Json;
 global using Newtonsoft.Json.Linq;
+global using Diet.WebMVC.Repositories.Common;

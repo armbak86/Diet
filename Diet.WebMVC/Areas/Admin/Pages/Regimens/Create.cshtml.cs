@@ -2,10 +2,10 @@
 
 public class CreateRegimenModel : PageModel
 {
-    private readonly IRegimenRepository _repository;
+    private readonly IGenericRepository<Regimen> _repository;
     private readonly IMapper _mapper;
 
-    public CreateRegimenModel(IRegimenRepository repository, IMapper mapper)
+    public CreateRegimenModel(IGenericRepository<Regimen> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -25,7 +25,7 @@ public class CreateRegimenModel : PageModel
             return Page();
         
 
-        await _repository.CreateRegimenAsync(_mapper.Map<Regimen>(Regimen));
+        await _repository.AddAsync(_mapper.Map<Regimen>(Regimen));
 
         return RedirectToPage("./Index");
     }

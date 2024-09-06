@@ -2,9 +2,9 @@
 
 public class DeleteFoodModel : PageModel
 {
-    private readonly IFoodRepository _repository;
+    private readonly IGenericRepository<Food> _repository;
 
-    public DeleteFoodModel(IFoodRepository repository)
+    public DeleteFoodModel(IGenericRepository<Food> repository)
     {
         _repository = repository;
     }
@@ -14,31 +14,13 @@ public class DeleteFoodModel : PageModel
         if (id == null)
             return NotFound();
 
-        var food = await _repository.GetFoodAsync((int)id);
+        var food = await _repository.GetByIdAsync((int)id);
 
         if (food != null)
-            await _repository.DeleteFoodAsync(food);
+            await _repository.UpdateAsync(food);
         else
             return NotFound();
 
         return RedirectToPage("./Index");
     }
-
-    //public async Task<IActionResult> OnPostAsync(int? id)
-    //{
-    //    if (id == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    var food = await _repository.GetFoodAsync((int)id);
-    //    if (food != null)
-    //    {
-    //        Food = food;
-    //        _repository.Foods.Remove(Food);
-    //        await _repository.SaveChangesAsync();
-    //    }
-
-    //    return RedirectToPage("./IndexModel");
-    //}
 }

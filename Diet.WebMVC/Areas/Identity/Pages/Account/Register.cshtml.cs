@@ -37,11 +37,14 @@ public class RegisterModel : PageModel
     {
         if (ModelState.IsValid)
         {
-            var user = new AppUser { UserName = UserViewModel.Email, Email = UserViewModel.Email };
+            // TODO: Use AutoMapper
+
+            var history = await _historyRepository.AddAsync(new());
+            var user = new AppUser { UserName = UserViewModel.Email, Email = UserViewModel.Email};
             var result = await _userManager.CreateAsync(user, UserViewModel.Password);
             if (result.Succeeded)
             {
-                await _historyRepository.CreateHistoryAsync(new History() { AppUserId = user.Id });
+                await _historyRepository.AddAsync(new History() { AppUserId = user.Id });
 
                 await _userManager.UpdateAsync(user);
                 await _signInManager.SignInAsync(user,isPersistent: false);

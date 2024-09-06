@@ -16,12 +16,12 @@ public class DeleteAppUserModel : PageModel
         if (id == null)
             return NotFound();
 
-        // TODO: Refactor code to have foregin kes instead of this nasty way 
+        // TODO: Refactor code to have foreign kes instead of this nasty way 
         var user = await _userManager.Users.Include(u => u.History).Where(u=>u.Id== id).FirstOrDefaultAsync();
 
         if (user != null)
         {
-            await _historyRepository.DeleteHistoryAsync(await _historyRepository.GetHistoryAsync(user.History.Id));
+            await _historyRepository.RemoveAsync(await _historyRepository.GetByIdAsync(user.History.Id));
             await _userManager.DeleteAsync(user);
         }
         else

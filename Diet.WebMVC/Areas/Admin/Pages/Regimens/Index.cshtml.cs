@@ -2,9 +2,9 @@
 
 public class RegimenIndex : PageModel
 {
-    private readonly IRegimenRepository _repository;
+    private readonly IGenericRepository<Regimen> _repository;
 
-    public RegimenIndex(IRegimenRepository repository)
+    public RegimenIndex(IGenericRepository<Regimen> repository)
     {
         _repository = repository;
     }
@@ -13,6 +13,6 @@ public class RegimenIndex : PageModel
 
     public async Task OnGetAsync()
     {
-        Regimens = await _repository.GetRegimensAsync();
+        Regimens = await _repository.GetAllAsync();
     }
 }

@@ -2,9 +2,9 @@
 
 public class DeleteExerciseModel : PageModel
 {
-    private readonly IExerciseRepository _repository;
+    private readonly IGenericRepository<Exercise> _repository;
 
-    public DeleteExerciseModel(IExerciseRepository repository)
+    public DeleteExerciseModel(IGenericRepository<Exercise> repository)
     {
         _repository = repository;
     }
@@ -14,31 +14,13 @@ public class DeleteExerciseModel : PageModel
         if (id == null)
             return NotFound();
 
-        var exercise = await _repository.GetExerciseAsync((int)id);
+        var exercise = await _repository.GetByIdAsync((int)id);
 
         if (exercise != null)
-            await _repository.DeleteExerciseAsync(exercise);
+            await _repository.RemoveAsync(exercise);
         else
             return NotFound();
 
         return RedirectToPage("./Index");
     }
-
-    //public async Task<IActionResult> OnPostAsync(int? id)
-    //{
-    //    if (id == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    var exercise = await _repository.GetExerciseAsync((int)id);
-    //    if (exercise != null)
-    //    {
-    //        Exercise = exercise;
-    //        _repository.Exercises.Remove(Exercise);
-    //        await _repository.SaveChangesAsync();
-    //    }
-
-    //    return RedirectToPage("./IndexModel");
-    //}
 }

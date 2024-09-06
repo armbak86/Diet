@@ -2,10 +2,10 @@
 
 public class CreateExerciseModel : PageModel
 {
-    private readonly IExerciseRepository _repository;
+    private readonly IGenericRepository<Exercise> _repository;
     private readonly IMapper _mapper;
 
-    public CreateExerciseModel(IExerciseRepository repository, IMapper mapper)
+    public CreateExerciseModel(IGenericRepository<Exercise> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -25,7 +25,7 @@ public class CreateExerciseModel : PageModel
             return Page();
         
 
-        await _repository.CreateExerciseAsync(_mapper.Map<Exercise>(Exercise));
+        await _repository.AddAsync(_mapper.Map<Exercise>(Exercise));
 
         return RedirectToPage("./Index");
     }

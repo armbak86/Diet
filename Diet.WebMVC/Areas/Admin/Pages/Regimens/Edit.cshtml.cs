@@ -2,10 +2,10 @@
 
 public class EditRegimenModel : PageModel
 {
-    private readonly IRegimenRepository _repository;
+    private readonly IGenericRepository<Regimen> _repository;
     private readonly IMapper _mapper;
 
-    public EditRegimenModel(IRegimenRepository repository, IMapper mapper)
+    public EditRegimenModel(IGenericRepository<Regimen> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -20,7 +20,7 @@ public class EditRegimenModel : PageModel
             return NotFound();
 
 
-        var regimen = await _repository.GetRegimenAsync((int)id);
+        var regimen = await _repository.GetByIdAsync((int)id);
         if (regimen == null)
             return NotFound();
 
@@ -34,7 +34,7 @@ public class EditRegimenModel : PageModel
         if (!ModelState.IsValid)
             return Page();
 
-        await _repository.UpdateRegimenAsync(_mapper.Map<Regimen>(Regimen));
+        await _repository.UpdateAsync(_mapper.Map<Regimen>(Regimen));
 
         return RedirectToPage("./Index");
     }

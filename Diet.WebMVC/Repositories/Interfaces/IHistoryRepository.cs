@@ -1,13 +1,7 @@
 ﻿namespace Diet.WebMVC.Repositories.Interfaces;
 
-public interface IHistoryRepository
+public interface IHistoryRepository:IGenericRepository<History>
 {
-    Task<IEnumerable<History>> GetHistoriesAsync();
-    Task<History> GetHistoryAsync(int id);
-    Task<History> GetHistoryIncludedByUserIdAsync(string userId);
-    Task<History> CreateHistoryAsync(History history);
-    Task UpdateHistoryAsync(History history);
-    Task DeleteHistoryAsync(History history);
-    Task DeleteHistoryAsync(int id);
+    Task<History> GetLoadedHistoryAsync(string userId);
     Task<int> GetHistoryIdAsync(string userId);
 }
