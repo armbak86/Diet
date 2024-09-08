@@ -1,0 +1,33 @@
+﻿@* @typeparam TModel
+@model GenericTableModel<TModel>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                @foreach (var header in Model.ColumnHeaders)
+                {
+                    <th>@header</th>
+                }
+                <th></th> <!-- Action buttons column -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    @foreach (var columnValue in Model.ColumnValues)
+                    {
+                        <td>@columnValue(item)</td>
+                    }
+                    <td>
+                        <!-- Example of action buttons, adjust as needed -->
+                        <a class="btn btn-sm" asp-page="./Edit" asp-route-id="@((item as dynamic).Id)"><i class="fas fa-pen"></i></a>
+                        <a class="btn btn-danger btn-sm btn-delete" data-id="@((item as dynamic).Id)"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+ *@

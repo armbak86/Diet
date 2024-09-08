@@ -7,5 +7,6 @@ public class Regimen : BaseEntity
     public int Price { get; set; }
 
     // Relations
+    public string AppUserId { get; set; }
     public IEnumerable<AppUser>? AppUsers{ get; set; }
 }

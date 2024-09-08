@@ -1,0 +1,49 @@
+﻿@page
+@model UserRegimensModel
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">غذا ها</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>نام رژیم</th>
+                                <th>توضیحات</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var regimen in Model.UserRegimens)
+                            {
+                                string desc = regimen.Description;
+                                <tr>
+                                    <td>@regimen.Name</td>
+                                    <td>@((desc.Length < 50) ? desc : desc?.Substring(0,50) + "...")</td>
+                                    <td>
+                                        <a class="btn btn-sm" asp-page="./Edit" asp-route-id="@regimen.Id"><i class="fas fa-pen"></i></a>
+                                        <a class="btn btn-danger btn-sm btn-delete" data-page="Admin/Regimens" data-id="@regimen.Id"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_DataTableScriptsPartial");
+    }
+}
+
+@section Styles {
+    @{
+        await Html.RenderPartialAsync("_DataTableStylesPartial");
+    }
+} *@
