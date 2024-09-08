@@ -5,12 +5,12 @@ public class LoginModel : PageModel
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
-
-    public LoginModel(SignInManager<AppUser> signInManager,
-        UserManager<AppUser> userManager)
+    private readonly IHistoryRepository _historyRepository;
+    public LoginModel(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IHistoryRepository historyRepository)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _historyRepository = historyRepository;
     }
 
     [BindProperty]
@@ -22,7 +22,7 @@ public class LoginModel : PageModel
     [TempData]
     public string ErrorMessage { get; set; }
 
-    public IActionResult OnGetAsync(string returnUrl = null)
+    public IActionResult OnGetAsync(string? returnUrl = null)
     {
         returnUrl ??= Url.Content("~/");
 
@@ -41,22 +41,34 @@ public class LoginModel : PageModel
 
     public async Task<IActionResult> OnPostAsync(string returnUrl = null)
     {
-        //TODO: Remove Email Varification 
         returnUrl ??= Url.Content("~/");
 
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
+            return Page();
+
+        var result = await _signInManager.PasswordSignInAsync(UserViewModel.Email, UserViewModel.Password, UserViewModel.RememberMe, lockoutOnFailure: false);
+        if (!result.Succeeded)
         {
-            var result = await _signInManager.PasswordSignInAsync(UserViewModel.Email, UserViewModel.Password, UserViewModel.RememberMe, lockoutOnFailure: false);
-            if (result.Succeeded)
-                return LocalRedirect(returnUrl);
-            else
-            {
-                ModelState.AddModelError(string.Empty, "اطلاعات وارد شده صحیح نمی باشد");
-                return Page();
-            }
+            ModelState.AddModelError(string.Empty, "اطلاعات وارد شده صحیح نمی باشد");
+            return Page();
         }
 
-        // If we got this far, something failed, redisplay form
-        return Page();
+        var user = await _userManager.FindByEmailAsync(UserViewModel.Email);
+        if (user == null)
+            return Page(); // Handle if user is unexpectedly null
+
+        // Check if the HistoryId claim already exists
+        var userClaims = await _userManager.GetClaimsAsync(user);
+        if (!userClaims.Any(c => c.Type == "HistoryId"))
+        {
+            var historyId = await _historyRepository.GetHistoryIdAsync(user.Id);
+            await _userManager.AddClaimAsync(user, new Claim("HistoryId", historyId.ToString()));
+
+            // Re-sign the user to refresh the claims
+            await _signInManager.SignInAsync(user, isPersistent: false);
+        }
+
+        return LocalRedirect(returnUrl);
     }
+
 }
