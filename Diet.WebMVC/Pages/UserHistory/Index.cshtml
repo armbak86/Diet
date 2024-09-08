@@ -1,5 +1,7 @@
 ﻿@page
 @model Diet.WebMVC.Pages.UserHistory.IndexModel
+@inject IGenericRepository<Food> foodRepository
+@inject IGenericRepository<Exercise> exerciseRepository
 
 @{
     ViewData["Title"] = "Index";
@@ -7,6 +9,10 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/site/css/user-history.css" />
+
+    @{
+        await Html.RenderPartialAsync("_DataTableStylesPartial");
+    }
 }
 
 <div class="container content">
@@ -25,17 +31,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.FoodItemes)
+                        @foreach (var item in Model.FoodItems)
                         {
                             <tr>
-                                <td>@item.Food.Name</td>
+                                <td>@((await foodRepository.GetByIdAsync(item.FoodId)).Name)</td>
                                 <td>@item.EatenFoodAmount</td>
                                 <td>@item.FinalCalorie</td>
                                 <td>@item.CreatedDate</td>
                                 <td>
                                     <div class="action-buttons">
-                                        <button class="btn btn-edit">ویرایش</button>
-                                        <button class="btn btn-delete">حذف</button>
+                                        <a class="btn btn-sm" asp-page="./Foods/Edit" asp-route-id="@item.Id"><i class="fas fa-pen"></i></a>
+                                        <a class="btn btn-danger btn-sm btn-delete" data-page="UserHistory/Foods" data-id="@item.Id"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -43,16 +49,58 @@
                     </tbody>
                 </table>
                 <div class="text-end mt-3">
-                    <button class="btn btn-add">افزودن غذای جدید</button>
+                    <a class="btn btn-add" asp-page="./Foods/Create">افزودن غذای جدید</a>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <h2 class="mb-4">غذاهای مصرف شده</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>نام فعالیت</th>
+                            <th>مقدار</th>
+                            <th>کالری</th>
+                            <th>زمان مصرف</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ExerciseItems)
+                        {
+                            <tr>
+                                <td>@((await exerciseRepository.GetByIdAsync(item.ExerciseId)).Name)</td>
+                                <td>@item.DoneExerciseAmount</td>
+                                <td>@item.FinalCalorie</td>
+                                <td>@item.CreatedDate</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <a class="btn btn-sm" asp-page="./Exercises/Edit" asp-route-id="@item.Id"><i class="fas fa-pen"></i></a>
+                                        <a class="btn btn-danger btn-sm btn-delete" data-page="UserHistory/Exercises" data-id="@item.Id"><i class="fas fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="text-end mt-3">
+                    <a class="btn btn-add" asp-page="./Exercises/Create">افزودن فعالیت جدید</a>
                 </div>
             </div>
         </div>
 
         <div class="col-12">
             <div class="total-calories">
-                <div class="calories-label">جمع کالری مصرفی:</div>
-                <div class="calories-value">۹۷۰ کالری</div>
+                <div class="calories-label">بالانس شما تا الان:</div>
+                <div class="calories-value">@(Model.FoodItems.Sum(e => e.FinalCalorie) - Model.ExerciseItems.Sum(e => e.FinalCalorie))</div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_DataTableScriptsPartial");
+    }
+    <script src="~/admin/js/main-js.js"></script>
+}

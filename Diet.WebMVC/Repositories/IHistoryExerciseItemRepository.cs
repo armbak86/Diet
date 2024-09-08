@@ -1,4 +1,4 @@
-﻿namespace Diet.WebMVC.Repositories.Interfaces;
+﻿namespace Diet.WebMVC.Repositories;
 
 public interface IHistoryExerciseItemRepository
 {

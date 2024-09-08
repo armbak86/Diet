@@ -34,7 +34,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     public async Task<IEnumerable<T>> SelectAsync(Expression<Func<T, bool>> predicate) => await _context.Set<T>().Where(predicate).ToListAsync();
 
-    public IQueryable<T> Select() => _context.Set<T>();
+    public IQueryable<T> Queryable() => _context.Set<T>();
 
     public async Task UpdateAsync(T entity)
     {

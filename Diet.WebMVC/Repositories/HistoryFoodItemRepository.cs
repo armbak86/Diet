@@ -1,6 +1,4 @@
-﻿using Diet.WebMVC.Repositories.Interfaces;
-
-namespace Diet.WebMVC.Repositories;
+﻿namespace Diet.WebMVC.Repositories;
 
 public class HistoryFoodItemRepository : IHistoryFoodItemRepository
 {

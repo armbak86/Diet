@@ -8,7 +8,7 @@ public interface IGenericRepository<T> where T : BaseEntity
     Task RemoveAsync(T entity);
     Task<T> AddAsync(T entity);
     Task UpdateAsync(T entity);
-    public IQueryable<T> Select();
+    public IQueryable<T> Queryable();
     public Task<IEnumerable<T>> SelectAsync(Expression<Func<T, bool>> predicate);
     public Task<bool> Exists(int id);
 }
