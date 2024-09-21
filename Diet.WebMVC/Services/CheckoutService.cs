@@ -48,21 +48,13 @@ public class ZarinPalTestCheckoutService : ICheckoutService
             }
             else
             {
-
                 return new BadRequestResult();
-
-
             }
-
-
-
         }
 
         catch (Exception ex)
         {
             throw new Exception(ex.Message);
-
-
         }
     }
 

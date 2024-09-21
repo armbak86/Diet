@@ -8,5 +8,5 @@ public class AppUser : IdentityUser
 
     public History? History { get; set; }
 
-    public IEnumerable<Regimen>? Regimens { get; set; }
+    public ICollection<Regimen>? Regimens { get; set; }
 }

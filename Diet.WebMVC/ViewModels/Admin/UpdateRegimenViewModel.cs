@@ -1,6 +1,6 @@
 ﻿namespace Diet.WebMVC.ViewModels;
 
-public class RegimenViewModel:BaseViewModel
+public class UpdateRegimenViewModel:BaseViewModel
 {
     [Display(Name=$"نام رژیم")]
     [Required(ErrorMessage = "{0} اجباری است")]
@@ -17,10 +17,11 @@ public class RegimenViewModel:BaseViewModel
     public string? Description { get; set; }
     
     [Display(Name = $"عکس رژیم")]
-    [Required(ErrorMessage = "{0} اجباری است")]
-    public IFormFile? Image{ get; set; }  
-    
+    public IFormFile? ImageFormFile{ get; set; }
+
+    public string? Image { get; set; }
+
     [Display(Name = $"فایل رژیم")]
-    [Required(ErrorMessage = "{0} اجباری است")]
-    public IFormFile? File{ get; set; }
+    public IFormFile? FileFormFile{ get; set; }
+    public string? File { get; set; }
 }

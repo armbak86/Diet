@@ -22,6 +22,7 @@ public class DeleteRegimenModel : PageModel
         if (regimen != null)
         {
             _fileService.DeleteFile(_fileService.GetRootPath("images"), regimen.Image);
+            _fileService.DeleteFile(_fileService.GetRootPath("files"), regimen.File);
             await _repository.RemoveAsync(regimen);
         }
         else

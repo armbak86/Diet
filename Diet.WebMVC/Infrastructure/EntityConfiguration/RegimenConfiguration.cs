@@ -8,6 +8,10 @@ public class RegimenConfiguration : IEntityTypeConfiguration<Regimen>
 
         builder.Property(f => f.Description).HasMaxLength(750).IsRequired();
 
+        builder.Property(f => f.Image).IsRequired();
+        
+        builder.Property(f => f.File).IsRequired();
+
         builder.Property(f => f.CreatedDate).HasDefaultValue(DateTime.Now);
     }
 }

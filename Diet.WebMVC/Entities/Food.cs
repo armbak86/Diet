@@ -9,5 +9,5 @@ public class Food : BaseEntity
     public float Calorie { get; set; }
 
     //Relations 
-    public IEnumerable<HistoryFoodItem>? HistoryItems { get; set; }
+    public ICollection<HistoryFoodItem>? HistoryItems { get; set; }
 }

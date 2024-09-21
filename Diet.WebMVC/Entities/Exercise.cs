@@ -9,5 +9,5 @@ public class Exercise : BaseEntity
     public float BurnedCalorie { get; set; }
 
     //Relations 
-    public IEnumerable<HistoryExerciseItem>? HistoryItems { get; set; }
+    public ICollection<HistoryExerciseItem>? HistoryItems { get; set; }
 }

@@ -32,6 +32,7 @@ builder.Services.AddRazorPages();
 // Repositories
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
+builder.Services.AddScoped<IRegimenRepository, RegimenRepository>();
 
 //Services 
 builder.Services.AddHttpClient<ICheckoutService, ZarinPalTestCheckoutService>();

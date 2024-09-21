@@ -23,6 +23,17 @@ public class FileService : IFileService
 
     public string GetRootPath(string extra) => Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/{extra}");
 
+    public async Task ReplaceFilesAsync(IFormFile image1,string directory,string fileName, string image2Path)
+    {
+        var image1Path = Path.Combine(directory, image1.FileName);
+
+        if (File.Exists(image2Path))
+            File.Delete(image2Path);  // Delete original file1
+
+        // Upload new image1
+        using (var stream = new FileStream(image1Path, FileMode.Create)) await image1.CopyToAsync(stream);
+    }
+
     public async Task SaveThumbnail(IFormFile image, string directory, string fileName, int width, int height)
     {
         if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);

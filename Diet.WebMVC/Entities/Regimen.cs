@@ -9,5 +9,5 @@ public class Regimen : BaseEntity
     public string? File{ get; set; }
 
     // Relations
-    public IEnumerable<AppUser>? AppUsers{ get; set; }
+    public ICollection<AppUser>? AppUsers{ get; set; }
 }

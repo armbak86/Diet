@@ -27,11 +27,10 @@ public class CreateRegimenModel : PageModel
         if (!ModelState.IsValid)
             return Page();
 
-        // TODO: See how to pass image from automapper
         var regimen = _mapper.Map<Regimen>(Regimen);
-        regimen.Image = Regimen.Image.FileName;
 
         await _fileService.CreateFileAsync(Regimen.Image,_fileService.GetRootPath("images"), Regimen.Image.FileName);
+        await _fileService.CreateFileAsync(Regimen.File,_fileService.GetRootPath("files"), Regimen.File.FileName);
 
         await _repository.AddAsync(regimen);
 

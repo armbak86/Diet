@@ -1,14 +1,14 @@
 ﻿namespace Diet.WebMVC.Pages.Regimens;
 
+[Authorize]
 public class DetailsModel : PageModel
 {
     private readonly IGenericRepository<Regimen> _repository;
-    private readonly ICheckoutService _checkoutService;
 
-    public DetailsModel(IGenericRepository<Regimen> repository, ICheckoutService checkoutService)
+
+    public DetailsModel(IGenericRepository<Regimen> repository)
     {
         _repository = repository;
-        _checkoutService = checkoutService;
     }
 
     [BindProperty]
@@ -25,24 +25,5 @@ public class DetailsModel : PageModel
             return NotFound();
 
         return Page();
-    }
-
-    public async Task<IActionResult> OnGetCheckoutAsync(int id)
-    {
-        //TODO: Complete checkout and add regimen to user if successful
-        
-        Regimen = await _repository.GetByIdAsync(id);
-
-        try
-        {
-            return await _checkoutService.InitiatePaymentAsync(Regimen.Price, Regimen.Name);
-
-            //var isSuccess = await _checkoutService.VerifyPaymentAsync(authority.ToString(), 10000);
-            //return RedirectToPage("/Index");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { Error = ex.Message });
-        }
     }
 }
