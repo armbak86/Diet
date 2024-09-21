@@ -6,39 +6,35 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/site/css/regimens.css" />
+    @* <link rel="stylesheet" href="~/site/css/regimens.css" /> *@
 }
 
-<div class="container mt-4">
-    @* <h2 class="text-center mb-4">لیست رژیم‌های غذایی</h2> *@
 
-    <div class="filter-section">
-        <input type="text" class="form-control" id="dietSearch" placeholder="جستجوی رژیم">
-        <select class="form-control" id="dietType">
-            <option value="">نوع رژیم</option>
-            <option value="کاهش وزن">کاهش وزن</option>
-            <option value="افزایش وزن">افزایش وزن</option>
-            <option value="ورزشی">ورزشی</option>
-        </select>
-        <input type="number" class="form-control" id="priceRange" placeholder="حداکثر قیمت">
-    </div>
+<div class="regimens-section">
+    <div class="container">
 
-    <div class="row" id="dietList">
-        @foreach (var regimen in Model.Regimens.Items)
-        {
-            <div class="col-md-4 mb-4">
-                <div class="diet-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Diet 1">
-                    <div class="diet-card-body">
-                        <h3 class="diet-card-title">@regimen.Name</h3>
-                        <div class="diet-card-price">۲۰۰٬۰۰۰ تومان</div>
-                        <p class="diet-card-description">@regimen.Description?.Substring(0, 25) ...</p>
-                        <a class="btn btn-custom mt-3 mb-0" asp-page="./Details" asp-route-id="@regimen.Id">اطلاعات بیشتر</a>
+        <div class="mb-4">
+            <input type="text" class="form-control" id="dietSearch" placeholder="جستجوی رژیم">
+        </div>
+
+        <div class="row" id="dietList">
+            @foreach (var regimen in Model.Regimens.Items)
+            {
+                <div class="col-12 col-sm-6 col-md-4 mb-5">
+                    <div class="regimen-entry">
+                        <a asp-page="./Details" asp-route-id="@regimen.Id" class="regimen-thumbnail">
+                            <img src="images/@regimen.Image" alt="Image"
+                                 class="img-fluid">
+                        </a>
+                        <div class="regimen-content-entry">
+                            <h3><a asp-page="./Details" asp-route-id="@regimen.Id">@regimen.Name</a></h3>
+                            <div class="meta">@regimen.Price تومان</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
 
-    @await Html.PartialAsync("_PaginationPartial", Model.Regimens)
+        @await Html.PartialAsync("_PaginationPartial", Model.Regimens)
+    </div>
 </div>

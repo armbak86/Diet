@@ -1,13 +1,25 @@
 ﻿namespace Diet.WebMVC.ViewModels;
 
-public class UserRegisterViewModel:BaseViewModel
+public class UserRegisterViewModel : BaseViewModel
 {
-    [Required(ErrorMessage="{0} اجباری است")]
+    [Required(ErrorMessage = "{0} اجباری است")]
     [EmailAddress(ErrorMessage = "{0} معتبر وارد کنید!")]
     [Display(Name = "ایمیل")]
     public string Email { get; set; }
 
-    [Required(ErrorMessage="{0} اجباری است")]
+    [Required(ErrorMessage = "{0} اجباری است")]
+    [Display(Name = "سن")]
+    public int Age { get; set; }
+
+    [Required(ErrorMessage = "{0} اجباری است")]
+    [Display(Name = "وزن")]
+    public float Weight { get; set; }
+
+    [Required(ErrorMessage = "{0} اجباری است")]
+    [Display(Name = "قد")]
+    public float Hight { get; set; }
+
+    [Required(ErrorMessage = "{0} اجباری است")]
     [StringLength(100, ErrorMessage = "{0} باید بین ۶ تا ۱۰۰ کاراکتر باشد", MinimumLength = 6)]
     [DataType(DataType.Password)]
     [Display(Name = "رمز عبور")]

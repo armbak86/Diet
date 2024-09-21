@@ -1,5 +1,6 @@
 ﻿namespace Diet.WebMVC.Areas.Admin.Pages.Regimens;
 
+[Authorize(Roles = "Admin")]
 public class RegimenIndex : PageModel
 {
     private readonly IGenericRepository<Regimen> _repository;

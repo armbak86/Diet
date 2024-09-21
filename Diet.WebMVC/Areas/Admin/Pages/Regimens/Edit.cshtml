@@ -13,6 +13,11 @@
                 <span asp-validation-for="Regimen.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Regimen.Price" class="control-label"></label>
+                <input asp-for="Regimen.Price" class="form-control" />
+                <span asp-validation-for="Regimen.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Regimen.Description" class="control-label"></label>
                 <textarea asp-for="Regimen.Description" class="form-control" ></textarea>
                 <span asp-validation-for="Regimen.Description" class="text-danger"></span>

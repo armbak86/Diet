@@ -1,28 +1,219 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "صفحه اصلی";
 }
 
-<!-- ***** Welcome Area Start ***** -->
-<div class="welcome-area" id="welcome">
+@inject IGenericRepository<Regimen> regimenRepository
+@inject SignInManager<AppUser> signInManager
 
-    <!-- ***** Header Text Start ***** -->
-    <div class="header-text">
-        <div class="container">
-            <div class="row">
-                <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
-                     data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                    <h1><em>بهبود سلامتی</em> تخصص ماست</h1>
-                    <p>
-                        با اسم سلامتی خودتو تضمین کن! می تونی با وارد کردن اطلاعاتت از وضعیتت با خبر بشی و در صورت
-                        نیاز از رژیم های متنوع ما استفاده کنی.
-                    </p>
-                    <a href="#about" class="main-button-slider">KNOW US BETTER</a>
+@{
+    var signedIn = signInManager.IsSignedIn(User);
+}
+
+<!-- Start Hero Section -->
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>رژیم بگیر دیگه</span></h1>
+                    <p class="mb-4"> متن چرت و پرت متن چرت و پرت متن چرت و پرت متن چرت و پرت متن چرت و پرت متن چرت و پرت</p>
+                    <p><a href="" class="btn btn-secondary m-2">ثبت نام کن!</a></p>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="hero-img-wrap">
+                    <img src="images/couch.png" class="img-fluid">
                 </div>
             </div>
         </div>
     </div>
-    <!-- ***** Header Text End ***** -->
 </div>
-<!-- ***** Welcome Area End ***** -->
+<!-- End Hero Section -->
+<!-- Start free Regimen Section -->
+<div class="free-regimen-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+                <h2 class="mb-4 section-title">رژیم های پیشنهادی</h2>
+                <p class="mb-4">رژیم های رایگان ما</p>
+                <p><a asp-page="./Regimens/Index" class="btn">جست و جو</a></p>
+            </div>
+            @foreach (var regimen in (await regimenRepository.SelectAsync(r => r.Price == 0)).Take(3))
+            {
+                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <a class="regimen-item" asp-page="./Regimens/Details" asp-route-id="@regimen.Id">
+                        @* TODO: <img src="images/@regimen.Image" class="img-fluid regimen-thumbnail"> *@
+                        <img src="images/product-1.png" class="img-fluid regimen-thumbnail">
+                        <h3 class="regimen-title">@regimen.Name</h3>
+                        <strong class="regimen-price">رایگان</strong>
+
+                        <span class="icon-cross">
+                            <img src="images/cross.svg" class="img-fluid">
+                        </span>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- End Regimen Section -->
+<!-- Start Why Choose Us Section -->
+<div class="bmi-chart">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-4">
+                <h2 class="section-title">نمودار BMI</h2>
+                <p>اگر می خواهی  از وضعیت سلامتیت با خبر شی همین الان ثبت نام کن اگر می خواهی  از وضعیت سلامتیت با خبر شی همین الان ثبت نام کن اگر می خواهی  از وضعیت سلامتیت با خبر شی همین الان ثبت نام کن اگر می خواهی  از وضعیت سلامتیت با خبر شی همین الان ثبت نام کن اگر می خواهی  از وضعیت سلامتیت با خبر شی همین الان ثبت نام کن</p>
+
+                @if (signedIn)
+                {
+                    <div class="row my-5">
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="images/truck.svg" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>سلامتی شما</h3>
+                                <p>BMI شما: </p>
+                                <p>وضعیت شما: چاق</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="images/truck.svg" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>در ادامه رژیم های پیشنهادی بر اساس وضعیت شما نمایش داده می شود</h3>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row my-5">
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="images/truck.svg" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>چرت و پرت</h3>
+                                <p>چرت و پرت چرت و پرت چرت و پرت چرت و پرت چرت و پرت چرت و پرت چرت و پرت چرت و پرت </p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="images/bag.svg" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>چرت و پرت</h3>
+                                <p>چرت و پرت چرت و پرت چرت و پرت چرت و پرت چرت و پرت چرت و پرت چرت و پرت چرت و پرت چرت و پرت</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            <div class="col-lg-8">
+                <div class="img-wrap">
+                    <canvas id="bmiChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        @if (signedIn)
+        {
+            <!-- Start Suggested Regimen -->
+            <div class="suggested-regimen">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                            <div class="regimen-item-sm d-flex">
+                                <div class="thumbnail">
+                                    <img src="images/product-1.png" alt="Image" class="img-fluid">
+                                </div>
+                                <div class="pt-3">
+                                    <h3>Nordic Chair</h3>
+                                    <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
+                                    <p><a href="#">Read More</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                            <div class="regimen-item-sm d-flex">
+                                <div class="thumbnail">
+                                    <img src="images/product-2.png" alt="Image" class="img-fluid">
+                                </div>
+                                <div class="pt-3">
+                                    <h3>Kruzo Aero Chair</h3>
+                                    <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
+                                    <p><a href="#">Read More</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                            <div class="regimen-item-sm d-flex">
+                                <div class="thumbnail">
+                                    <img src="images/product-3.png" alt="Image" class="img-fluid">
+                                </div>
+                                <div class="pt-3">
+                                    <h3>Ergonomic Chair</h3>
+                                    <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
+                                    <p><a href="#">Read More</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Suggested Regimen -->
+        }
+
+        <div class="foods">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-lg-7 mb-5 mb-lg-0">
+                        <div class="imgs-grid">
+                            <div class="grid grid-1"><img src="images/img-grid-1.jpg" alt="Untree.co"></div>
+                            <div class="grid grid-2"><img src="images/img-grid-2.jpg" alt="Untree.co"></div>
+                            <div class="grid grid-3"><img src="images/img-grid-3.jpg" alt="Untree.co"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 ps-lg-5">
+                        <h2 class="section-title mb-4">انواع غذا ها و فعالیت ها</h2>
+                        <p>
+                            Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada.
+                            Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque
+                            habitant morbi tristique senectus et netus et malesuada Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit. Magni, molestiae expedita voluptatibus sunt illo iusto mollitia ad ipsa vero
+                            asperiores hic temporibus quisquam corporis dolor delectus ea dolorum id velit tenetur ex esse
+                            tempora modi dignissimos. Impedit consectetur maxime nihil minus. Facilis natus praesentium
+                            vitae quas repudiandae hic, totam aperiam. Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Culpa repellat, ratione dolorum labore in nisi perferendis doloremque nam reiciendis
+                            deleniti, animi modi nobis quaerat voluptatibus ea cupiditate earum fugiat eius ipsa! Illum
+                            necessitatibus quod dolorem voluptas veniam labore, maxime aspernatur aperiam nam! Labore
+                            laborum corrupti odio? Unde, repellat illum magnam sit neque accusamus at tenetur exercitationem
+                            ipsa praesentium nihil quas dignissimos vero sunt eveniet voluptatibus eaque maxime optio dolor?
+                            Explicabo ipsam, voluptate perspiciatis in deleniti quas aut architecto quis quidem praesentium,
+                            tenetur consequatur corrupti vel quibusdam doloribus possimus quos tempore at facere animi
+                            temporibus harum culpa quisquam nulla? Alias, impedit?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="~/site/js/bmi-chart.js"></script>
+}

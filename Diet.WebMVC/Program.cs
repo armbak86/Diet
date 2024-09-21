@@ -24,8 +24,8 @@ builder.Services.AddDefaultIdentity<AppUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
     options.SignIn.RequireConfirmedEmail = false;
-})
-    .AddEntityFrameworkStores<AppDbContext>();
+}).AddRoles<IdentityRole>()
+  .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddRazorPages();
 
@@ -37,11 +37,10 @@ builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
 builder.Services.AddHttpClient<ICheckoutService, ZarinPalTestCheckoutService>();
 builder.Services.AddScoped(typeof(IPaginationService<>), typeof(PaginationService<>));
 builder.Services.AddScoped<ICheckoutService, ZarinPalTestCheckoutService>();
+builder.Services.AddScoped<IFileService, FileService>();
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(FoodProfile), typeof(ExerciseProfile), typeof(RegimenProfile));
-
-// End services
 
 
 var app = builder.Build();
@@ -59,6 +58,8 @@ else
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

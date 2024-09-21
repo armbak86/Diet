@@ -2,6 +2,8 @@
 
 public interface IFileService
 {
-    Task CreateFile(IFormFile file, string dest, string fileName);
+    string GetRootPath(string extra);
+    Task CreateFileAsync(IFormFile file, string directory, string fileName);
     void DeleteFile(string directory, string fileName);
+    Task SaveThumbnail(IFormFile image, string directory, string fileName, int width, int height);
 }

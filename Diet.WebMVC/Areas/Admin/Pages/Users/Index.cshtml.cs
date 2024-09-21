@@ -1,5 +1,6 @@
 ﻿namespace Diet.WebMVC.Areas.Admin.Pages.Users;
 
+[Authorize(Roles = "Admin")]
 public class AppUserIndex : PageModel
 {
     private readonly UserManager<AppUser> _userManager;

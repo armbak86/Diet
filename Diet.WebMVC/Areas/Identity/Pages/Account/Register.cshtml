@@ -4,36 +4,40 @@
     ViewData["Title"] = "ثبت نام";
 }
 
-@section Styles {
-    <link rel="stylesheet" href="~/site/css/account.css" />
-}
+<div class="login-form-container">
+    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <h3>ثبت نام</h3>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+        <div class="mb-3">
+            <input asp-for="UserViewModel.Email" class="form-control" placeholder="ایمیل" />
+            <span asp-validation-for="UserViewModel.Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <input asp-for="UserViewModel.Age" class="form-control" placeholder="سن" />
+            <span asp-validation-for="UserViewModel.Age" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <input asp-for="UserViewModel.Weight" class="form-control" placeholder="وزن" />
+            <span asp-validation-for="UserViewModel.Weight" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <input asp-for="UserViewModel.Hight" class="form-control" placeholder="قد" />
+            <span asp-validation-for="UserViewModel.Hight" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <input asp-for="UserViewModel.Password" class="form-control" placeholder="رمز عبور" />
+            <span asp-validation-for="UserViewModel.Password" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <input asp-for="UserViewModel.ConfirmPassword" class="form-control" placeholder="تکرار رمز عبور" />
+            <span asp-validation-for="UserViewModel.ConfirmPassword" class="text-danger"></span>
+        </div>
+        <button id="registerSubmit" type="submit" class="btn btn-custom">ثبت نام</button>
 
-<section class="d-flex justify-content-center align-items-center" style="height:100vh">
-    <div class="login-container">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h3>ثبت نام</h3>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">    
-                <input asp-for="UserViewModel.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="ایمیل" />
-                <span asp-validation-for="UserViewModel.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="UserViewModel.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="رمز عبور" />
-                <span asp-validation-for="UserViewModel.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="UserViewModel.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="تکرار رمز عبور" />
-                <span asp-validation-for="UserViewModel.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="btn btn-custom">ثبت نام</button>
-            <div class="forgot-password">
-                <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">ورود</a>
-            </div>
-        </form>
-    </div>
-  
-</section>
+    </form>
+</div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

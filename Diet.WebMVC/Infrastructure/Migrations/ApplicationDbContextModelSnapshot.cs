@@ -125,7 +125,7 @@ namespace Diet.WebMVC.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 9, 9, 1, 17, 12, 190, DateTimeKind.Local).AddTicks(6757));
+                        .HasDefaultValue(new DateTime(2024, 9, 14, 21, 25, 57, 867, DateTimeKind.Local).AddTicks(4593));
 
                     b.Property<int>("Minutes")
                         .HasColumnType("int");
@@ -154,7 +154,7 @@ namespace Diet.WebMVC.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 9, 9, 1, 17, 12, 190, DateTimeKind.Local).AddTicks(5357));
+                        .HasDefaultValue(new DateTime(2024, 9, 14, 21, 25, 57, 867, DateTimeKind.Local).AddTicks(3898));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -183,7 +183,7 @@ namespace Diet.WebMVC.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 9, 9, 1, 17, 12, 190, DateTimeKind.Local).AddTicks(8284));
+                        .HasDefaultValue(new DateTime(2024, 9, 14, 21, 25, 57, 867, DateTimeKind.Local).AddTicks(5422));
 
                     b.HasKey("Id");
 
@@ -260,19 +260,18 @@ namespace Diet.WebMVC.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 9, 9, 1, 17, 12, 190, DateTimeKind.Local).AddTicks(9484));
+                        .HasDefaultValue(new DateTime(2024, 9, 14, 21, 25, 57, 867, DateTimeKind.Local).AddTicks(6229));
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(750)
                         .HasColumnType("nvarchar(750)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

@@ -1,8 +1,12 @@
-﻿namespace Diet.WebMVC.Services;
+﻿using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+
+namespace Diet.WebMVC.Services;
 
 public class FileService : IFileService
 {
-    public async Task CreateFile(IFormFile file, string directory, string fileName)
+    public async Task CreateFileAsync(IFormFile file, string directory, string fileName)
     {
         if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
@@ -15,5 +19,14 @@ public class FileService : IFileService
         var destination = Path.Combine(directory, fileName);
 
         if (File.Exists(destination)) File.Delete(destination);
+    }
+
+    public string GetRootPath(string extra) => Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/{extra}");
+
+    public async Task SaveThumbnail(IFormFile image, string directory, string fileName, int width, int height)
+    {
+        if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+        // TODO:Implement this
     }
 }

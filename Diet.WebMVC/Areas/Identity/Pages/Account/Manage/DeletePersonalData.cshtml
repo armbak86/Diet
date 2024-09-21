@@ -16,8 +16,8 @@
     <form id="delete-user" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 
-        <div class="form-floating mb-3">
-            <input asp-for="Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="رمز عبور" />
+        <div class="mb-3">
+            <input asp-for="Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="رمز عبور"/>
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
 

@@ -2,73 +2,129 @@
 <html lang="fa">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="TemplateMo">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-          rel="stylesheet">
-
-    <title>Diet</title>
-
 
     <!-- Additional CSS Files -->
 
-    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.rtl.css">
+    @* <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.rtl.css">
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" /> *@
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="~/site/css/site.css">
-    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
-    <link rel="stylesheet" href="~/lib/owl-carousel.css">
+
+    <!-- Font -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
 
     @await RenderSectionAsync("Styles", required: false)
-
 
 </head>
 
 <body>
-    <!-- ***** Header Area Start ***** -->
-    <header class="header-area header-sticky">
+    <!-- Start Header/Navigation -->
+    <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="main-nav">
-                        <!-- ***** Logo Start ***** --> 
-                        <a href="index.html" class="logo">
-                            Lava
-                        </a>
-                        <!-- ***** Logo End ***** -->
-                        <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li class="scroll-to-section"><a href="/" class="menu-item">خانه</a></li>
-                            <li class="scroll-to-section"><a href="#about" class="menu-item">درباره ما</a></li>
-                            <li class="scroll-to-section"><a asp-page="/Regimens/Index" class="menu-item">رژیم ها</a></li>
-                            <partial name="./_LoginPartial.cshtml"/>
-                        </ul>
+            <a class="navbar-brand" href="index.html">Furni</a>
 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
+                    aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                        <!-- ***** Menu End ***** -->
-                    </nav>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarsFurni">
+                <ul class="custom-navbar-nav navbar-nav mb-2 mb-md-0 ms-2">
+                    <li><a class="nav-link" href="/" class="menu-item">خانه</a></li>
+                    <li><a class="nav-link" href="#about" class="menu-item">درباره ما</a></li>
+                    <li><a class="nav-link" asp-page="/Regimens/Index" class="menu-item">رژیم ها</a></li>
+                    <partial name="./_LoginPartial" />
+                </ul>
             </div>
         </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+
+    </nav>
+    <!-- End Header/Navigation -->
+
 
     @RenderBody()
 
-    <!-- ***** Footer Start ***** -->
-    <footer>
-        <div class="container">
+	<!-- Start Footer Section -->
+	<footer class="footer-section">
+		<div class="container relative">
+			<div class="row g-5 mb-5">
+				<div class="col-lg-4">
+					<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Furni<span>.</span></a></div>
+					<p class="mb-4">
+						Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus
+						malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.
+						Pellentesque habitant
+					</p>
+				</div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="sub-footer">
-                        <p>Copyright &copy; 2024 Dietation | Designed by Kiana Baktash
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+				<div class="col-lg-8">
+					<div class="row links-wrap">
+						<div class="col-6 col-sm-6 col-md-3">
+							<ul class="list-unstyled">
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Services</a></li>
+								<li><a href="#">Blog</a></li>
+								<li><a href="#">Contact us</a></li>
+							</ul>
+						</div>
+
+						<div class="col-6 col-sm-6 col-md-3">
+							<ul class="list-unstyled">
+								<li><a href="#">Support</a></li>
+								<li><a href="#">Knowledge base</a></li>
+								<li><a href="#">Live chat</a></li>
+							</ul>
+						</div>
+
+						<div class="col-6 col-sm-6 col-md-3">
+							<ul class="list-unstyled">
+								<li><a href="#">Jobs</a></li>
+								<li><a href="#">Our team</a></li>
+								<li><a href="#">Leadership</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+
+						<div class="col-6 col-sm-6 col-md-3">
+							<ul class="list-unstyled">
+								<li><a href="#">Nordic Chair</a></li>
+								<li><a href="#">Kruzo Aero</a></li>
+								<li><a href="#">Ergonomic Chair</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="border-top copyright mb-0">
+				<div class="row pt-4">
+					<div class="col-lg-6">
+						<p class="mb-2 text-center text-lg-start">
+							تمامی حقوق این سایت متعلق به کیانا بکطاش می باشد - طراحی کیانا بکطاش
+						</p>
+					</div>
+
+					<div class="col-lg-6 text-center text-lg-end">
+						<ul class="list-unstyled d-inline-flex ms-auto">
+							<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	<!-- End Footer Section -->
 
     <!-- jQuery -->
     <script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
@@ -76,12 +132,6 @@
     <!-- Bootstrap -->
     <script src="~lib/proper/popper.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
-
-    <!-- Plugins -->
-    <script src="~/lib/owl-carousel/owl-carousel.js"></script>
-    <script src="~/lib/scrollreveal/scrollreveal.min.js"></script>
-    <script src="~/lib/waypoints/waypoints.min.js"></script>
-    <script src="~/lib/imgfix/imgfix.min.js"></script>
 
     <!-- Global Init -->
     <script src="~/lib/site/js/site.js"></script>

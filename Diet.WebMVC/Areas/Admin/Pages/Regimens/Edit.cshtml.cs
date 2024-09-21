@@ -1,5 +1,6 @@
 ﻿namespace Diet.WebMVC.Areas.Admin.Pages.Regimens;
 
+[Authorize(Roles = "Admin")]
 public class EditRegimenModel : PageModel
 {
     private readonly IGenericRepository<Regimen> _repository;
@@ -31,6 +32,8 @@ public class EditRegimenModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
+        // TODO: Think about updateing photo
+
         if (!ModelState.IsValid)
             return Page();
 

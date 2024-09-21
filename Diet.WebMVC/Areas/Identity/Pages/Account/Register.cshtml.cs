@@ -39,16 +39,24 @@ public class RegisterModel : PageModel
         {
             // TODO: Use AutoMapper
 
-            var history = await _historyRepository.AddAsync(new());
-            var user = new AppUser { UserName = UserViewModel.Email, Email = UserViewModel.Email};
+            var user = new AppUser { UserName = UserViewModel.Email, Email = UserViewModel.Email, Age = UserViewModel.Age, Weight = UserViewModel.Weight, Hight = UserViewModel.Hight };
             var result = await _userManager.CreateAsync(user, UserViewModel.Password);
             if (result.Succeeded)
             {
-                await _historyRepository.AddAsync(new History() { AppUserId = user.Id });
+                var history = await _historyRepository.AddAsync(new History() { AppUserId = user.Id });
+
+                var userClaims = await _userManager.GetClaimsAsync(user);
+                if (!userClaims.Any(c => c.Type == "HistoryId"))
+                {
+                    await _userManager.AddClaimAsync(user, new Claim("HistoryId", history.Id.ToString()));
+
+                    // Re-sign the user to refresh the claims
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                }
 
                 await _userManager.UpdateAsync(user);
-                await _signInManager.SignInAsync(user,isPersistent: false);
-                return LocalRedirect(returnUrl);
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return LocalRedirect(returnUrl ?? "/Index");
             }
 
             foreach (var error in result.Errors)

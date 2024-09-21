@@ -1,5 +1,6 @@
 ﻿namespace Diet.WebMVC.Areas.Admin.Pages.Foods;
 
+[Authorize(Roles = "Admin")]
 public class EditFoodModel : PageModel
 {
     private readonly IGenericRepository<Food> _repository;

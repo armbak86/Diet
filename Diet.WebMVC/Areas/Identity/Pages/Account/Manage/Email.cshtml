@@ -8,12 +8,12 @@
 <form class="fade-in" method="post">
     <div asp-validation-summary="All" class="text-danger" role="alert"></div>
 
-    <div class="mb-3">
+    <div class="mb-3 form-floating">
         <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
         <label class="form-label">ایمیل فعلی</label>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 form-floating">
         <input asp-for="ViewModel.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="لطفا ایمیل جدیدی وارد کنید." />
         <label asp-for="ViewModel.NewEmail" class="form-label"></label>
         <span asp-validation-for="ViewModel.NewEmail" class="text-danger"></span>

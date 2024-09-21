@@ -5,25 +5,22 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="submenu">
-        <a href="javascript:;">پروفایل</a>
-        <ul>
-            <li><a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">سلام @UserManager.GetUserName(User)!</a></li>
-            <li>
-                <a asp-area="History" asp-page="/Index">سابقه</a>
-            </li>
-            <li>
-                <a asp-area="Identity" asp-page="/Account/Logout">خروج</a>
-            </li>
-        </ul>
-    </li>
+    @if (User.IsInRole("Admin"))
+    {
+        <li><a class="nav-link" asp-area="Admin">پنل ادمین</a></li>
+    }
+
+    <li><a class="nav-link" asp-area="UserHistory" asp-page="/Index">سابقه</a></li>
+    
+
+    @*Try to move this out of parent ul in layout*@
+    <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-auto">
+        <li><a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><img src="~/images/user.svg"></a></li>
+        <li><a class="nav-link" asp-area="Identity" asp-page="/Account/Logout">خروج</a></li>
+    </ul>
 }
 else
 {
-    <li class="scroll-to-section">
-        <a class="menu-item" asp-area="Identity" asp-page="/Account/Login">ورود</a>
-    </li>
-    <li class="scroll-to-section">
-        <a class="menu-item" asp-area="Identity" asp-page="/Account/Register">ثبت نام</a>
-    </li>
+    <li><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">ورود</a></li>
+    <li><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">ثبت نام</a></li>
 }

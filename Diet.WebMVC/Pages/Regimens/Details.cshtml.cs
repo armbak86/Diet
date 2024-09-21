@@ -27,11 +27,15 @@ public class DetailsModel : PageModel
         return Page();
     }
 
-    public async Task<IActionResult> OnGetCheckoutAsync()
+    public async Task<IActionResult> OnGetCheckoutAsync(int id)
     {
+        //TODO: Complete checkout and add regimen to user if successful
+        
+        Regimen = await _repository.GetByIdAsync(id);
+
         try
         {
-            return await _checkoutService.InitiatePaymentAsync(10000, "Regimen.Name");
+            return await _checkoutService.InitiatePaymentAsync(Regimen.Price, Regimen.Name);
 
             //var isSuccess = await _checkoutService.VerifyPaymentAsync(authority.ToString(), 10000);
             //return RedirectToPage("/Index");

@@ -2,17 +2,17 @@
 
 public class UserRegimensModel : PageModel
 {
-    private readonly IGenericRepository<Regimen> _repository;
+    private readonly UserManager<AppUser> _userManager;
 
-    public UserRegimensModel(IGenericRepository<Regimen> repository)
+    public UserRegimensModel(UserManager<AppUser> userManager)
     {
-        _repository = repository;
+        _userManager = userManager;
     }
 
     public IEnumerable<Regimen> UserRegimens { get; set; } = default!;
 
     public async Task OnGetAsync()
     {
-        UserRegimens = await _repository.Queryable().Where(r => r.AppUserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToListAsync();
+        UserRegimens = await _userManager.Users.Include(r => r.Regimens).Where(u => u.Id == _userManager.GetUserId(User)).Select(u => u.Regimens).FirstOrDefaultAsync();
     }
 }

@@ -2,7 +2,7 @@
 @model Diet.WebMVC.Areas.Admin.Pages.Users.AppUserIndex
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">ساخت</a>
 </p>
 
 <div class="row">
@@ -25,7 +25,7 @@
                                 <tr>
                                     <td>@user.UserName</td>
                                     <td>
-                                        <a class="btn btn-sm" asp-page="./Edit" asp-route-id="@user.Id"><i class="fas fa-pen"></i></a>
+                                        <a class="btn btn-sm" asp-page="./MakeAdmin" asp-route-id="@user.Id"><i class="fas fa-pen"></i></a>
                                         <a class="btn btn-danger btn-sm btn-delete" data-page="Admin/Users" data-id="@user.Id"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>

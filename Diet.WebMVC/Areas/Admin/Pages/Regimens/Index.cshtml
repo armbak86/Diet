@@ -2,7 +2,7 @@
 @model Diet.WebMVC.Areas.Admin.Pages.Regimens.RegimenIndex
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">ساخت</a>
 </p>
 
 <div class="row">
@@ -15,6 +15,7 @@
                         <thead>
                             <tr>
                                 <th>نام رژیم</th>
+                                <th>قیمت</th>
                                 <th>توضیحات</th>
                                 <th></th>
                             </tr>
@@ -25,6 +26,7 @@
                                 string desc = regimen.Description;
                                 <tr>
                                     <td>@regimen.Name</td>
+                                    <td>@regimen.Price</td>
                                     <td>@((desc.Length < 50) ? desc : desc?.Substring(0,50) + "...")</td>
                                     <td>
                                         <a class="btn btn-sm" asp-page="./Edit" asp-route-id="@regimen.Id"><i class="fas fa-pen"></i></a>

@@ -1,5 +1,6 @@
 ﻿namespace Diet.WebMVC.Areas.Admin.Pages.Exercises;
 
+[Authorize(Roles = "Admin")]
 public class ExerciseIndex : PageModel
 {
     private readonly IGenericRepository<Exercise> _repository;

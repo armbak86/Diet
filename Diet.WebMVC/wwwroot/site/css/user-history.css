@@ -15,13 +15,6 @@
     --table-row-hover-bg: #f1f2f3;
 }
 
-/*body {
-    background-color: var(--background-color);
-    font-family: 'Vazir', sans-serif;
-    direction: rtl;
-    color: var(--container-text-color);
-}*/
-
 .content {
     margin-top: 2rem;
 }
@@ -54,13 +47,6 @@
     margin-top: 2rem;
 }
 
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .total-calories .calories-value {
     color: var(--link-color);
     font-size: 2rem;
@@ -68,41 +54,4 @@
 
 .total-calories .calories-label {
     font-size: 1.25rem;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 0.5rem;
-}
-
-
-.btn {
-    border-radius: var(--border-radius);
-}
-
-.btn-delete {
-    background-color: #e74c3c;
-    color: #fff;
-}
-
-.btn-edit {
-    background-color: #3498db;
-    color: #fff;
-}
-
-.btn-add {
-    background-color: #2ecc71;
-    color: #fff;
-}
-
-.btn-delete:hover {
-    background-color: #c0392b;
-}
-
-.btn-edit:hover {
-    background-color: #2980b9;
-}
-
-.btn-add:hover {
-    background-color: #27ae60;
 }
