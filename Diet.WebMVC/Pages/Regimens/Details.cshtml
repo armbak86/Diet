@@ -22,13 +22,14 @@
         <div class="col-md-4">
             <div class="diet-payment">
                 <h3>گزینه‌های پرداخت</h3>
-                <div class="price">@Model.Regimen.Price تومان</div>
                 @if (Model.Regimen.Price == 0 || await repository.RegimenBought(userManager.GetUserId(User), Model.Regimen.Id))
                 {
+                    <div class="price">خریداری شده</div>
                     <a class="btn btn-success" asp-page="./Download" asp-route-id="@Model.Regimen.Id">دانلود</a>
                 }
                 else
                 {
+                    <div class="price">@Model.Regimen.Price تومان</div>
                     <a class="btn btn-success" asp-page="Checkout" asp-route-id="@Model.Regimen.Id">پرداخت با کارت بانکی</a>
                 }
             </div>
